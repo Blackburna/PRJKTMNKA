@@ -1,0 +1,70 @@
+body{
+  background-image: url("https://cdn.statically.io/img/i.pinimg.com/originals/8e/14/55/8e145599d4847e339828787162952035.gif");
+  background-color: rgb(0, 0, 0);
+}
+tr {
+  color: #050a0e;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  background-color: rgba(214,0,255, 0.48);
+  font-family:Arial Black;
+  border-style: solid;
+}
+.gomb{
+  background-color: rgba(214,0,255, 0.48);
+  font-family:Arial Black;
+  border-style: solid;
+}
+.lista{
+  padding-left: 1%;
+  width: 464px;
+}
+.adatk{
+padding-left: 1%;
+}
+label {
+  color: #050a0e;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  outline: none;
+  background-color: rgba(214,0,255, 0.48);
+  padding: 2px 25px;
+  position: relative;
+  font-family:Arial Black;
+  font-size: .85rem;
+  text-transform: uppercase;
+  flex-direction: row;
+  justify-content: flex-end;
+  text-align: right;
+  width: 400px;
+  line-height: 26px;
+  margin-bottom: 10px;
+}
+.szam {
+  border-collapse: separate;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  text-transform: uppercase;
+  padding-top: 100px;
+  padding-bottom: 20px;
+  font-size: 20px;
+  letter-spacing: 5px;
+}
+h1{
+  background-color: rgba(214,0,255, 0.48);
+  font-family:Arial Black;
+  border-style: solid;
+}
+input {
+  height: 20px;
+  flex: 0 0 200px;
+  margin-left: 10px;
+}
+button{
+  background-color: rgba(214,0,255, 0.48);
+  font-family:Arial Black;
+
+}

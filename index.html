@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oltás</title>
+    <link rel="stylesheet" href="stilus.css">
+</head>
+
+<body>
+    <div class="adatk">
+        <label for="vkb">Van-e krónikus betegsége?</label>
+        <input type="radio" name="radio" onchange="szamit()" id="vkb"><br>
+        <label for="eid">Egészségügyben, idősotthonban dolgozik?</label>
+        <input type="radio" name="radio" onchange="szamit()" id="eid"><br>
+        <label for="il">Idősotthonban lakik?</label>
+        <input type="checkbox" name="" onchange="szamit()" id="il"><br>
+        <label for="kemav">Korábban elkapta már a vírust?</label>
+        <input type="checkbox" name="" onchange="szamit()" id="kemav"><br>
+        <label for="van">Be van e oltva?</label>
+        <input type="checkbox" name="" id="van" checked></input>
+    </div>
+    <div class="adatk">
+        <label for="nev">Név:</label>
+        <input type="text" id="nev" /><br>
+        <label for="kategoria">Kategória:</label>
+        <input type="text" name="" id="kategoria"><br>
+        <label for="szulev">Születési év (1900-2021):</label>
+        <input type="number" name="" id="szulev" value=0></input>
+        <button onclick="felvesz()">OK</button>
+    </div>
+    <div class="lista">
+        <div>
+            <h1 class="emb">Jelentkezők</h1>
+            <div id="kimenet"></div>
+        </div>
+        <div>
+            <h1 class="beolt">Oltottak listája</h1>
+            <div id="el"></div>
+        </div>
+    </div>
+    <div id="kimenet"></div>
+    <script>
+        var emberek = [];
+        var beoltott = [];
+        function Ember(nev, kategoria, szulev, van) {
+            this.nev = nev;
+            this.kategoria = kategoria;
+            this.szulev = szulev;
+            this.van = van;
+        }
+        function felvesz() {
+            var nev = document.getElementById("nev").value;
+            var kategoria = document.getElementById("kategoria").value;
+            var szulev = parseInt(document.getElementById("szulev").value);
+            var van = document.getElementById("van").checked;
+            var jo = true;
+
+            if (kategoria == "") {
+                kategoria = "Hibás adat!";
+            }
+
+            if (jo) {
+                var ember = new Ember(nev, kategoria, szulev, van);
+                emberek.push(ember);
+                kiir();
+            }
+        }
+        function kiir() {
+            var ki = document.getElementById("kimenet");
+            ki.innerHTML = "";
+            var tablazat = document.createElement("table")
+            for (let i = 0; i < emberek.length; i++) {
+                var ember = emberek[i];
+                var sor = document.createElement("tr")
+                var cella = document.createElement("td")
+                cella.innerHTML = ember.nev;
+                sor.appendChild(cella);
+                var cella = document.createElement("td")
+                cella.innerHTML = ember.kategoria;
+                sor.appendChild(cella);
+                var cella = document.createElement("tr")
+                cella.innerHTML = ember.szulev;
+                sor.appendChild(cella);
+                sor.onclick = function () { atrak(i) };
+                tablazat.appendChild(sor);
+            }
+            ki.appendChild(tablazat);
+        }
+        function atrak(id) {
+            ember = emberek[id];
+            beoltott.push(ember);
+            emberek.splice(id, 1);
+            kiir();
+            elkiir();
+        }
+        function elkiir() {
+            var el = document.getElementById("el");
+            el.innerHTML = "";
+            var tablazat = document.createElement("table");
+            for (var i = 0; i < beoltott.length; i++) {
+                var ember = beoltott[i];
+                var sor = document.createElement("tr")
+                var cella = document.createElement("td")
+                cella.innerHTML = ember.nev;
+                sor.appendChild(cella);
+                var cella = document.createElement("td");
+                cella.innerHTML = ember.kategoria;
+                sor.appendChild(cella);
+                var cella = document.createElement("td");
+                cella.innerHTML = ember.szulev;
+                sor.appendChild(cella);
+                tablazat.appendChild(sor);
+
+            }
+            el.appendChild(tablazat);
+        }
+        var ki = document.getElementById("kimenet");
+        ki.innerHTML = "";
+        function szamit() {
+            var nev = document.getElementById("nev").value;
+            var kateg = document.getElementById("kategoria").value;
+            var szulev = parseInt(document.getElementById("szulev").value);
+            if (vkb.checked) {
+                ki.innerHTML += nev + " " + kateg + 1 + " " + szulev + " " + "<br>";
+                return 1;
+            }
+            if (eid.checked) {
+                ki.innerHTML += nev + " " + kateg + 2 + " " + szulev + " " + "<br>";
+                return 2;
+            }
+            if (il.checked) {
+                ki.innerHTML += nev + " " + kateg + 3 + " " + szulev + " " + "<br>";
+                return 3;
+            }
+            if (kemav.checked) {
+                ki.innerHTML += nev + " " + kateg + 4 + " " + szulev + " " + "<br>";
+                return 4;
+            }
+            else {
+                return 5;
+            }
+        }
+    </script>
+</body>
+
+</html>
